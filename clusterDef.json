@@ -1,0 +1,66 @@
+{
+  "type": "pclusterv2",
+  "username": "Wei.Huang",
+  "resourceData": {
+    "architecture": "amd64",
+    "availability_zone": "us-east-1b",
+    "controller_efa": false,
+    "controller_image": "ami-02b1d2512cb34242c",
+    "export_fs_type": "xfs",
+    "image_disk_count": 1,
+    "image_disk_name": "snap-0a127a48212c4e816",
+    "image_disk_size_gb": 350,
+    "management_shape": "c7i.2xlarge",
+    "partition_config": [
+      {
+        "name": "compute",
+        "instance_type": "c7i.48xlarge",
+        "architecture": "amd64",
+        "availability_zone": "us-east-1b",
+        "default": "YES",
+        "efa": true,
+        "elastic_image": "ami-02b1d2512cb34242c",
+        "enable_spot": false,
+        "capacity_reservation": false,
+        "max_node_num": 400
+      },
+      {
+        "name": "process",
+        "instance_type": "c7i.12xlarge",
+        "max_node_num": 100,
+        "elastic_image": "ami-02b1d2512cb34242c",
+        "availability_zone": "us-east-1b",
+        "default": "NO",
+        "enable_spot": false,
+        "efa": false,
+        "capacity_reservation": false,
+        "architecture": "amd64"
+      }
+    ],
+    "region": "us-east-1",
+    "disks": [],
+    "slurm_suspend_time": "",
+    "slurm_resume_timeout": "",
+    "slurm_suspend_timeout": "",
+    "slurm_return_to_service": ""
+  },
+  "attachedStorages": [
+    {
+      "storage": "66b0dd03994840e717be0131",
+      "mountPoint": "/lustre",
+      "export": ""
+    },
+    {
+      "storage": "675b4b47c098c169af2e4a00",
+      "mountPoint": "/bucket",
+      "export": ""
+    }
+  ],
+  "universalData": {
+    "resource_account": "NOAA AWS Commercial (Vault)",
+    "project": "ca-epic",
+    "access_public_key": "",
+    "user_bootstrap": ""
+  }
+}
+
