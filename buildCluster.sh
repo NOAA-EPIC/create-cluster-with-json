@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #export PW_API_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybV9ob3N0Ijoibm9hYS5wYXJhbGxlbC53b3JrcyIsInVzZXJuYW1lIjoiV2VpLkh1YW5nIiwiaXNzIjoicGFyYWxsZWx3b3JrcyIsInN1YiI6InVzZXI6V2VpLkh1YW5nIiwiYXVkIjpbInBhcmFsbGVsd29ya3MiXSwiZXhwIjoxNzM1OTQ0NTEwLCJpYXQiOjE3MzU5NDA5MTB9.0h3Bui2QaeXimKyn74gEpPHgb9_9OAzUvHYjsE-W1pQ"
-export PW_API_KEY="pwt_bm9hYS5wYXJhbGxlbC53b3Jrcw==.NDIzYzJjYTctYWE0YS00OGExLTk3OTAtY2M4YTRhMjVlNWJl"
+export PW_API_KEY="Your-Own-PW-API-KEY"
 
 export PW_PLATFORM_HOST=noaa.parallel.works
 
