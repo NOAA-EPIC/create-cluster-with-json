@@ -46,12 +46,12 @@
   },
   "attachedStorages": [
     {
-      "storage": "66b0dd03994840e717be0131",
+      "storage": "647f4ed8ae16b68e0481ea7f",
       "mountPoint": "/lustre",
       "export": ""
     },
     {
-      "storage": "675b4b47c098c169af2e4a00",
+      "storage": "647fbbe343d0f8dd315ab0af",
       "mountPoint": "/bucket",
       "export": ""
     }
@@ -60,7 +60,8 @@
     "resource_account": "NOAA AWS Commercial (Vault)",
     "project": "PROJECT",
     "access_public_key": "",
-    "user_bootstrap": "ALLNODES\n/contrib/Wei.Huang/pwsupport/mount-epic-contrib.sh\n/contrib/USERNAME/setup.sh"
+    "user_bootstrap": "ALLNODES\n/contrib/Wei.Huang/pwsupport/mount-epic-contrib.sh\n/contrib/USERNAME/setup.sh",
+    "health_check": "# (optional) User-specific master node Health Check script - \n# you can use this run custom node Health Check logic  upon cluster start\ngit clone https://github.com/parallelworks/cloud-cluster-healthchecks.git /tmp/healthcheck\n/tmp/healthcheck/healthcheck.sh"
   }
 }
 
