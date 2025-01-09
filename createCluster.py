@@ -64,12 +64,17 @@ if __name__ == '__main__':
             assert False, 'unhandled option'
 
 #------------------------------------------------------------------
-    header = prepare_headers(apikey)
-    name = clustername
-    type = clustertype
-    c = Client(pw_url, header)
+    print('clustername <%s>' %(clustername))
+    print('clustertype <%s>' %(clustertype))
+    print('displayname <%s>' %(displayname))
+    print('description <%s>' %(description))
+    print('tags <%s>' %(tags))
 
-    cluster = c.create_v2_cluster(name, description, tags, type)
+#------------------------------------------------------------------
+    header = prepare_headers(apikey)
+    c = Client(pw_url, header, displayname)
+
+    cluster = c.create_v2_cluster(clustername, description, tags, clustertype)
     cluster_id = cluster['_id']
 
     with open(jsonfile) as cluster_defintion:

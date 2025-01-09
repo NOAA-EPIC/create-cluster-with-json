@@ -5,10 +5,11 @@ import pprint as pp
 
 class Client():                                                                  
 
-    def __init__(self, url, header):                                             
+    def __init__(self, url, header, displayname):                                             
         self.url = url                                                           
         self.api = url+'/api'                                                    
         self.header = header                                                     
+        self.displayname = displayname
         self.session = requests.Session()                                        
         self.headers = {                                                         
             'Content-Type': 'application/json'                                   
@@ -35,7 +36,7 @@ class Client():
         url = self.api + "/v2/resources"
         payload = {
             'name': name,
-            'displayName': 'ZZZ test',
+            'displayName': self.displayname,
             'description': description,
             'tags': tags,
             'type': type,
