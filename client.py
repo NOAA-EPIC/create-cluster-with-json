@@ -29,13 +29,13 @@ class Client():
 
         return resource
 
-    def create_v2_cluster(self, clustername: str, displayname: str, description: str, tags: str, type: str):
+    def create_v2_cluster(self, name: str, description: str, tags: str, type: str):
         if type != 'pclusterv2' and type != 'gclusterv2' and type != 'azclusterv2':
             raise Exception("Invalid cluster type")
         url = self.api + "/v2/resources"
         payload = {
-            'name': clustername,
-            'displayName': displayname,
+            'name': name,
+            'displayName': 'ZZZ test',
             'description': description,
             'tags': tags,
             'type': type,

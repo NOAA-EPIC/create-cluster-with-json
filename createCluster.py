@@ -65,11 +65,11 @@ if __name__ == '__main__':
 
 #------------------------------------------------------------------
     header = prepare_headers(apikey)
-
+    name = clustername
+    type = clustertype
     c = Client(pw_url, header)
 
-    cluster = c.create_v2_cluster(clustername, displayname,
-        description, tags, clustertype)
+    cluster = c.create_v2_cluster(name, description, tags, type)
     cluster_id = cluster['_id']
 
     with open(jsonfile) as cluster_defintion:
