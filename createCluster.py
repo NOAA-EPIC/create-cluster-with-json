@@ -34,14 +34,32 @@ if __name__ == '__main__':
         sys.exit(-1)
 
     jsonfile = 'clusterDef.json'
+    clustername = 'testfromapi1'
+    displayname = 'WEI EPIC AWS c7i.48xlarge'
+   #type must be one of ['pclusterv2', 'gclusterv2', 'azclusterv2']
+    clustertype = 'pclusterv2'
+    description = 'Wei pclusterv2 on AWS from EPIC using c7i.48xlarge'
+    tags = 'computer on c7i.48xlarge, process on c7i.24xlarge'
 
-    opts, args = getopt.getopt(sys.argv[1:], '', ['help=', 'jsonfile='])
+    opts, args = getopt.getopt(sys.argv[1:], '', ['help=', 'jsonfile=', 'clustername=',
+                                                  'displayname=', 'clustertype=',
+                                                  'description=', 'tags='])
     for o, a in opts:
         if o in ['--help']:
             print('Usage: %s [--help] [--jsonfile=filename]')
             sys.exit(0)
         elif o in ['--jsonfile']:
             jsonfile = a
+        elif o in ['--clustername']:
+            clustername = a
+        elif o in ['--displayname']:
+            displayname = a
+        elif o in ['--clustertype']:
+            clustertype = a
+        elif o in ['--description']:
+            description = a
+        elif o in ['--tags']:
+            tags = a
         else:
             assert False, 'unhandled option'
 
@@ -50,8 +68,8 @@ if __name__ == '__main__':
 
     c = Client(pw_url, header)
 
-    cluster = c.create_v2_cluster(
-        "testfromapi1", "testtest", "tag1,tag2", "pclusterv2")
+    cluster = c.create_v2_cluster(clustername, displayname,
+        description, tags, clustertype)
     cluster_id = cluster['_id']
 
     with open(jsonfile) as cluster_defintion:
