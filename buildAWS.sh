@@ -1,7 +1,11 @@
 #!/bin/bash
 
-export PW_PLATFORM_HOST=noaa.parallel.works
-export PW_API_KEY="Your Own PW_API_KEY from ParallelWork site"
+source pw_api.key
+
+#pw_api.key should include these two lines:
+#export PW_PLATFORM_HOST=noaa.parallel.works
+#export PW_API_KEY="Your Own PW_API_KEY from ParallelWork site"
+
 #To generate your own PW_API_KEY:
 #1. Log in to your noaa.parallel.works account.
 #2. Click (and hold) at your username (at upper right corner)
@@ -14,21 +18,12 @@ export PW_API_KEY="Your Own PW_API_KEY from ParallelWork site"
 #This key can be used to authenticate as your user into the platform, so if the wrong person gets it,
 #they could potentially use it to access your account and files.
 
-clustertype='pclusterv2'
-username="Wei.Huang"
+username=Wei.Huang
 management_shape="c7i.2xlarge"
 compute_instance_type="c7i.48xlarge"
 process_instance_type="c7i.12xlarge"
 #project="ca-epic"
 project="ca-sfs-emc"
-
-sed -e "s/CLUSTERTYPE/${clustertype}/g" \
-    -e "s/USERNAME/${username}/g" \
-    -e "s/MANAGEMENT_SHAPE/${management_shape}/g" \
-    -e "s/COMPUTE_INSTANCE_TYPE/${compute_instance_type}/g" \
-    -e "s/PROCESS_INSTANCE_TYPE/${process_instance_type}/g" \
-    -e "s/PROJECT/${project}/g" \
-    clusterDef.json.AWS.c7i.48xlarge > clusterDef.json
 
 #jsonfile is the file to process.
 #clustername must be all lower cases english characters, plus numbers. NO special characters, like underscore, star, etc.
@@ -66,6 +61,14 @@ else
     echo "Unknown CSP: ${project}. exit"
     exit -1
 fi
+
+sed -e "s/CLUSTERTYPE/${clustertype}/g" \
+    -e "s/USERNAME/${username}/g" \
+    -e "s/MANAGEMENT_SHAPE/${management_shape}/g" \
+    -e "s/COMPUTE_INSTANCE_TYPE/${compute_instance_type}/g" \
+    -e "s/PROCESS_INSTANCE_TYPE/${process_instance_type}/g" \
+    -e "s/PROJECT/${project}/g" \
+    clusterDef.json.AWS.c7i.48xlarge > clusterDef.json
 
 IFS='.' read -r instance_class linstance_size <<< "$compute_instance_type"
 IFS='.' read -r firstname lastname <<< "$username"

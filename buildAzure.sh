@@ -2,7 +2,7 @@
 
 source pw_api.key
 
-#pw_api.key include these two lines:
+#pw_api.key should include these two lines:
 #export PW_PLATFORM_HOST=noaa.parallel.works
 #export PW_API_KEY="Your Own PW_API_KEY from ParallelWork site"
 
@@ -24,6 +24,26 @@ compute_instance_type=Standard_F72s_v2
 process_instance_type=Standard_F48s_v2
 #project="ca-epic"
 project="cz-sfs-emc"
+
+#jsonfile is the file to process.
+#clustername must be all lower cases english characters, plus numbers. NO special characters, like underscore, star, etc.
+#clusterype must be one of ['pclusterv2', 'gclusterv2', 'azclusterv2'], which corespondint to [AWS, GCP, Azure]
+#displayname is a name for your cluster.
+#description is a string discribe what this cluster is for. it can be any string
+#tags is the tag for the cluster. As it will show on Parallel-Works web site associate with the cluser. So, better to make it meaningful
+
+if [[ $project == *"epic"* ]]; then
+    echo "Using EPIC account"
+    lorganization=epic
+    uorganization=EPIC
+elif [[ $project == *"sfs-emc"* ]]; then
+    echo "Using EMC account"
+    lorganization=emc
+    uorganization=EMC
+else
+    echo "Unknown project: ${project}. exit"
+    exit -1
+fi
 
 if [[ $project == *"ca-"* ]]; then
     lcspname=aws
@@ -49,26 +69,6 @@ sed -e "s/CLUSTERTYPE/${clustertype}/g" \
     -e "s/PROCESS_INSTANCE_TYPE/${process_instance_type}/g" \
     -e "s/PROJECT/${project}/g" \
     clusterDef.json.AWS.c7i.48xlarge > clusterDef.json
-
-#jsonfile is the file to process.
-#clustername must be all lower cases english characters, plus numbers. NO special characters, like underscore, star, etc.
-#clusterype must be one of ['pclusterv2', 'gclusterv2', 'azclusterv2'], which corespondint to [AWS, GCP, Azure]
-#displayname is a name for your cluster.
-#description is a string discribe what this cluster is for. it can be any string
-#tags is the tag for the cluster. As it will show on Parallel-Works web site associate with the cluser. So, better to make it meaningful
-
-if [[ $project == *"epic"* ]]; then
-    echo "Using EPIC account"
-    lorganization=epic
-    uorganization=EPIC
-elif [[ $project == *"sfs-emc"* ]]; then
-    echo "Using EMC account"
-    lorganization=emc
-    uorganization=EMC
-else
-    echo "Unknown project: ${project}. exit"
-    exit -1
-fi
 
 IFS='.' read -r instance_class linstance_size <<< "$compute_instance_type"
 IFS='.' read -r firstname lastname <<< "$username"
