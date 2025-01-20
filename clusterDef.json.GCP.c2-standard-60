@@ -1,0 +1,79 @@
+{
+  "type": "CLUSTERTYPE",
+  "username": "USERNAME",
+  "provider_version": "",
+  "multi_user": false,
+  "cluster_config": {
+    "controller_GVNIC": false,
+    "controller_image": "projects/cloud-parallel-works/global/images/pw-hpc-r8-x86-64-v33-slurm",
+    "controller_tier_1": false,
+    "export_fs_type": "xfs",
+    "image_disk_count": 1,
+    "image_disk_name": "noaa-apps-rocky8-05-21-2024",
+    "image_disk_size_gb": 350,
+    "image_disk_type": "pd-ssd",
+    "management_shape": "MANAGEMENT_SHAPE",
+    "migrate_on_maintenance": true,
+    "partition_config": [
+      {
+        "architecture": "amd64",
+        "default": "YES",
+        "elastic_image": "projects/cloud-parallel-works/global/images/pw-hpc-r8-x86-64-v33-slurm",
+        "enable_spot": false,
+        "gvnic": true,
+        "instance_type": "COMPUTE_INSTANCE_TYPE",
+        "migrate_on_maintenance": false,
+        "name": "compute",
+        "os": "linux",
+        "tier_1": true,
+        "zone": "us-east1-b",
+        "max_node_num": 300
+      },
+      {
+        "name": "process",
+        "instance_type": "PROCESS_INSTANCE_TYPE",
+        "default": "NO",
+        "enable_spot": false,
+        "os": "linux",
+        "elastic_image": "projects/cloud-parallel-works/global/images/pw-hpc-r8-x86-64-v33-slurm",
+        "zone": "us-east1-b",
+        "gvnic": true,
+        "tier_1": false,
+        "migrate_on_maintenance": true,
+        "architecture": "amd64",
+        "max_node_num": 200
+      }
+    ],
+    "region": "us-east1",
+    "slurm_resume_timeout": "",
+    "slurm_return_to_service": "",
+    "slurm_suspend_time": "",
+    "slurm_suspend_timeout": "",
+    "zone": "us-east1-b",
+    "disks": []
+  },
+  "storages": [
+    {
+      "storage": "6495c0804ae84981db5afa5f",
+      "mountPoint": "/bucket",
+      "export": ""
+    },
+    {
+      "storage": "66c7adb84af71f363bc0096d",
+      "mountPoint": "/contrib",
+      "export": ""
+    },
+    {
+      "storage": "673a7adfff27cd0ec865986f",
+      "mountPoint": "/lustre",
+      "export": ""
+    }
+  ],
+  "universalData": {
+    "resource_account": "NOAA AWS Commercial (Vault)",
+    "project": "PROJECT",
+    "access_public_key": "",
+    "user_bootstrap": "ALLNODES\n/contrib/Wei.Huang/pwsupport/mount-epic-contrib.sh\n/contrib/USERNAME/setup.sh",
+    "health_check": "# (optional) User-specific master node Health Check script - \n# you can use this run custom node Health Check logic  upon cluster start\ngit clone https://github.com/parallelworks/cloud-cluster-healthchecks.git /tmp/healthcheck\n/tmp/healthcheck/healthcheck.sh"
+  }
+}
