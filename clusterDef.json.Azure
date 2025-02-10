@@ -1,13 +1,11 @@
 {
-  "type": "CLUSTERTYPE",
+  "type": "azclusterv2",
   "username": "USERNAME",
-  "provider_version": "",
-  "multi_user": false,
-  "cluster_config": {
+  "resourceData": {
     "accelerated_networking": true,
     "architecture": "amd64",
-    "controller_image": "/communityGalleries/parallelworks-5c52b0a9-1535-4efe-b8bd-d0b44d91d210/images/compute-rocky8-gen2/versions/0.33.0",
-    "controller_shape": "MANAGEMENT_SHAPE",
+    "controller_image": "latest",
+    "controller_shape": "Standard_DS3_v2",
     "export_fs": "/apps",
     "export_fs_type": "xfs",
     "image_disk_count": 1,
@@ -17,27 +15,25 @@
     "partition_config": [
       {
         "accelerated_networking": true,
-        "architecture": "amd64",
+        "architecture": "",
         "default": "YES",
-        "elastic_image": "/communityGalleries/parallelworks-5c52b0a9-1535-4efe-b8bd-d0b44d91d210/images/compute-rocky8-gen2/versions/0.33.0",
+        "elastic_image": "latest",
         "enable_spot": false,
-        "instance_type": "COMPUTE_INSTANCE_TYPE",
+        "instance_type": "Standard_HC44rs",
+        "max_node_num": 120,
         "name": "compute",
-        "zones": "1",
-        "has_acc_networking_feature": true,
-        "max_node_num": 120
+        "zones": "1"
       },
       {
-        "name": "process",
-        "instance_type": "PROCESS_INSTANCE_TYPE",
-        "max_node_num": 100,
-        "default": "NO",
-        "enable_spot": false,
-        "elastic_image": "/communityGalleries/parallelworks-5c52b0a9-1535-4efe-b8bd-d0b44d91d210/images/compute-rocky8-gen2/versions/0.33.0",
-        "accelerated_networking": true,
+        "accelerated_networking": false,
         "architecture": "amd64",
-        "zones": "1",
-        "has_acc_networking_feature": true
+        "default": "NO",
+        "elastic_image": "latest",
+        "enable_spot": false,
+        "instance_type": "Standard_D8_v5",
+        "max_node_num": 120,
+        "name": "batch",
+        "zones": "1"
       }
     ],
     "region": "eastus",
@@ -45,16 +41,11 @@
     "slurm_return_to_service": "",
     "slurm_suspend_time": "",
     "slurm_suspend_timeout": "",
-    "controller_zone": "1",
     "disks": [],
-    "has_acc_networking_feature": true,
-    "show_local_disk": true,
     "local_disk_mount_path": "",
-    "useLocalDisk": true,
-    "local_disk_NFS": false,
-    "local_disk_mount_point": ""
+    "controller_zone": ""
   },
-  "storages": [
+  "attachedStorages": [
     {
       "storage": "64c9637500e358cbd1adafc3",
       "mountPoint": "/bucket",
@@ -72,7 +63,7 @@
   ],
   "universalData": {
     "resource_account": "NOAA AWS Commercial (Vault)",
-    "project": "PROJECT",
+    "project": "cz-cloudmgmt",
     "access_public_key": "",
     "user_bootstrap": "ALLNODES\n/contrib/Wei.Huang/pwsupport/mount-epic-contrib.sh\n/contrib/USERNAME/setup.sh",
     "health_check": "# (optional) User-specific master node Health Check script - \n# you can use this run custom node Health Check logic  upon cluster start\ngit clone https://github.com/parallelworks/cloud-cluster-healthchecks.git /tmp/healthcheck\n/tmp/healthcheck/healthcheck.sh"

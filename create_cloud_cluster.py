@@ -78,7 +78,7 @@ def updateJSON(json_in, json_out, request):
 
 #--------------------------------------------------------------------------
 def print_usage():
-    print('Usage: %s [--help] --username=YOUR-USERNAME project=YOUR-PROJECT [options]')
+    print('Usage: %s [--help] --username=YOUR-USERNAME --project=YOUR-PROJECT [options]')
     print('options are (here default for AWS):')
     print('--clustername=myawscluster (must be all lowcases, without special characters)')
     print('--displayname=The-name-to-display')
@@ -220,7 +220,7 @@ if __name__ == '__main__':
         if (region == None):
             region="eastus"
     elif (platform == 'cg'):
-        jsonfile = 'clusterDef.json.google'
+        jsonfile = 'clusterDef.json.GCP'
         clustertype = 'gclusterv2'
         csp_platform = 'GCP'
         if (management_shape == None):
