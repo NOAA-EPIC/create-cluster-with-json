@@ -84,7 +84,8 @@ def print_usage():
     print('--displayname=The-name-to-display')
     print('--description=string-describing-this-cluster')
     print('--management_shape=[c7i.2xlarge]')
-    print('--compute_instance_type=[c7i.48xlarge]')
+   #print('--compute_instance_type=[c7i.48xlarge]')
+    print('--compute_instance_type=[c7i.24xlarge]')
     print('--process_instance_type=[c7i.12xlarge]')
 
 #------------------------------------------------------------------
@@ -198,7 +199,8 @@ if __name__ == '__main__':
         if (management_shape == None):
             management_shape="c7i.2xlarge"
         if (compute_instance_type == None):
-            compute_instance_type="c7i.48xlarge"
+           #compute_instance_type="c7i.48xlarge"
+            compute_instance_type="c7i.24xlarge"
         if (process_instance_type == None):
             process_instance_type="c7i.12xlarge"
         if (zone == None):
@@ -243,7 +245,11 @@ if __name__ == '__main__':
         user_bootstrap = "ALLNODES\n/contrib/Wei.Huang/pwsupport/mount-epic-contrib.sh\n/contrib/%s/setup.sh" %(username)
 
     if (clustername == None):
-        clustername = '%s%s%s%s' %(lastname.lower(), csp_platform.lower(), organization.lower(), clustertype)
+        citl = compute_instance_type.lower()
+        citlstr = citl.replace('.', '')
+        citlstr1 = citlstr.replace('_', '')
+        clusterkind = citlstr1.replace('-', '')
+        clustername = '%s%s%s%s' %(lastname.lower(), csp_platform.lower(), organization.lower(), clusterkind)
 
     if (displayname == None):
         displayname = '%s %s %s %s' %(lastname.upper(), csp_platform.upper(), organization.upper(), compute_instance_type)
