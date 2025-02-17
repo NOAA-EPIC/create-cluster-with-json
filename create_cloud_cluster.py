@@ -240,9 +240,9 @@ if __name__ == '__main__':
         sys.exit(-1)
 
     if (organization == 'epic'):
-        user_bootstrap = "ALLNODES\n/contrib/%s/setup.sh" %(username)
+        user_bootstrap = "ALLNODES\\n/contrib/%s/setup.sh" %(username)
     else:
-        user_bootstrap = "ALLNODES\n/contrib/Wei.Huang/pwsupport/mount-epic-contrib.sh\n/contrib/%s/setup.sh" %(username)
+        user_bootstrap = "ALLNODES\\n/contrib/Wei.Huang/pwsupport/mount-epic-contrib.sh\\n/contrib/%s/setup.sh" %(username)
 
     if (clustername == None):
         citl = compute_instance_type.lower()
